@@ -3,6 +3,7 @@
 # author: john pazarzis
 # Creation Date: Tuesday, April 01 2014
 
+
 import random
 from numpy.random import normal
 import datetime
