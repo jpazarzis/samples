@@ -124,10 +124,6 @@ class List final {
 
 int main(){
     auto mylist = List<int> { 1,2,3,4,5};
-    // προσθεσε ακομα μερικους int με manual τροπο:    
-    mylist.add(6);
-    mylist.add(7);
-    mylist.add(8);
 
     for(List<int>::Iterator iter = mylist.begin(); iter != mylist.end();  ++iter){
         std::cout << iter->get_value() << std::endl;
@@ -139,6 +135,4 @@ int main(){
     for(List<int>::Iterator iter = mylist.begin(); iter != mylist.end();  ++iter){
         std::cout << iter->get_value() << std::endl;
     }
-
-
 }

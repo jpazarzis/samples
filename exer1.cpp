@@ -5,7 +5,6 @@
 class Matrix{
         using INTEGER_ARRAY = std::vector<int>;
         using MATRIX = std::vector<INTEGER_ARRAY>;
-
         MATRIX _element;
 
         bool anwtrigwnikos() const {
@@ -59,7 +58,6 @@ class Matrix{
         }
 
     public:
-
         int N; 
 
         void populate(int size) {
@@ -83,12 +81,8 @@ class Matrix{
             show_property(katwtrigwnikos(), "κατω τριγωνικος");
             show_property(symetrikos(), "συμμετρικος");
             show_property(araios(), "αραιος");
-
         }
 };
-
-
-
 
 int main() {
      Matrix m;

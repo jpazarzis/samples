@@ -34,6 +34,27 @@ def create_index(posts):
     posts.create_index([("author", ASCENDING)])
 
 
+class Posts(object):
+    def __init__(self, collection):
+        self.collection = collection
+
+    def find(self, matcher):
+        print matcher.to_json()
+        name = choice(names)
+        for post in self.collection.find({ 'author':  name}):
+            p = type("Post", (object,), post)
+            yield p
+
+class Matcher(object):
+
+    def to_json(self):
+        d = {}
+        for key, value in self.__dict__.iteritems():
+            d[key] = value
+        return d
+        
+        
+
 if __name__ == "__main__":
     from pymongo import MongoClient
     client = MongoClient('mongodb://localhost:27017/')
@@ -44,5 +65,15 @@ if __name__ == "__main__":
     #    print i
     #show_posts(client.mydb.posts)
     #create_index(client.mydb.posts)
-    for i in range(1000):
-        test_find(client.mydb.posts)
+    #for i in range(1000):
+    #    test_find(client.mydb.posts)
+
+    posts = Posts(client.mydb.posts)
+
+    matcher = Matcher()
+    matcher.author = choice(names)
+
+    for post in posts.find(matcher):
+        #print post.author
+        pass
+
