@@ -1,4 +1,5 @@
 #!/usr/bin/python
+
 # author: john pazarzis
 # Creation Date: Tuesday, July 01 2014
 
@@ -38,10 +39,9 @@ class Posts(object):
     def __init__(self, collection):
         self.collection = collection
 
-    def find(self, matcher):
-        print matcher.to_json()
+    def find(self, *args, **kargs):
         name = choice(names)
-        for post in self.collection.find({ 'author':  name}):
+        for post in self.collection.find(kargs):
             p = type("Post", (object,), post)
             yield p
 
@@ -70,10 +70,11 @@ if __name__ == "__main__":
 
     posts = Posts(client.mydb.posts)
 
-    matcher = Matcher()
-    matcher.author = choice(names)
+    m = {'author': choice(names)} 
 
-    for post in posts.find(matcher):
-        #print post.author
-        pass
+    for post in posts.find(author = choice(names)):
+        print post.author
+
+    for post in posts.find(**m):
+        print post.author
 
